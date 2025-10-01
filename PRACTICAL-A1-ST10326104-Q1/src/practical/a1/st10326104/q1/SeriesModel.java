@@ -1,35 +1,29 @@
 package practical.a1.st10326104.q1;
 
+/*References:
+Farrall, J., 2020, *Java Programming*, 9th ed.
+OpenAI, 2025. ChatGPT [AI language model]. Available at: https://chat.openai.com/
+ [Accessed 10 September 2025].
+*/
+
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * SeriesModel represents a series object with extra attributes:
- * - seriesAge restriction
- * - episode count
- * It extends NewMedia (which contains id, name, and size).
- */
 class SeriesModel extends NewMedia
 {
-    public String seriesAge;
-    public String episodeCount;
+    public String seriesAge;      // Age restriction
+    public String episodeCount;   // Number of episodes
 
-    /**
-     * Constructor for creating a new SeriesModel object.
-     */
-    public SeriesModel(String mediaId, String mediaName, String mediaSize, String seriesAge, String episodeCount)
+    public SeriesModel(String mediaId, String mediaName, String mediaSize, String seriesAge, String episodeCount) // Constructor
     {
         super(mediaId, mediaName, mediaSize);
         this.seriesAge = seriesAge;
         this.episodeCount = episodeCount;
     }
 
-    /**
-     * Prints the details of the series.
-     */
     @Override
-    public void printDetails()
+    public void printDetails() // Print series details
     {
         System.out.println("SERIES ID              : " + mediaId);
         System.out.println("SERIES NAME            : " + mediaName);
@@ -38,28 +32,21 @@ class SeriesModel extends NewMedia
     }
 }
 
-/**
- * SeriesApp is the main application class that allows
- * capturing, searching, updating, deleting, and printing reports of series.
- */
 class SeriesApp
 {
-    private static Scanner read = new Scanner(System.in);
-    private static List<SeriesModel> seriesList = new ArrayList<>();
+    private static Scanner read = new Scanner(System.in); // Scanner for input
+    private static List<SeriesModel> seriesList = new ArrayList<>(); // Store series
 
-    /**
-     * Entry point of the application.
-     */
     public static void main(String[] args)
     {
         System.out.println("LATEST SERIES - 2025");
         System.out.println("*************************************");
         System.out.println("Enter (1) to launch menu or any other key to exit: ");
-        String choice = read.nextLine();
+        String choice = read.nextLine(); // User input
 
         if(choice.equals("1"))
         {
-            launchMenu();
+            launchMenu(); // Open menu
         }
         else
         {
@@ -67,10 +54,7 @@ class SeriesApp
         }
     }
 
-    /**
-     * Displays the menu and allows the user to select different actions.
-     */
-    public static void launchMenu()
+    public static void launchMenu() // Main menu loop
     {
         while(true)
         {
@@ -82,59 +66,56 @@ class SeriesApp
             System.out.println("(5) Print series report - 2025");
             System.out.println("(6) Exit Application");
 
-            String option = read.nextLine();
+            String option = read.nextLine(); // Menu choice
 
             switch(option)
             {
                 case "1":
-                    captureSeries();
+                    captureSeries(); // Capture series
                     break;
                 case "2":
-                    searchSeries();
+                    searchSeries(); // Search series
                     break;
                 case "3":
-                    updateSeries();
+                    updateSeries(); // Update series
                     break;
                 case "4":
-                    deleteSeries();
+                    deleteSeries(); // Delete series
                     break;
                 case "5":
-                    printReport();
+                    printReport(); // Print all series
                     break;
                 case "6":
                     System.out.println("Exiting Application...");
-                    System.exit(0);
+                    System.exit(0); // Exit program
                 default:
                     System.out.println("Invalid option. Try again!");
             }
         }
     }
 
-    /**
-     * Captures details of a new series and adds it to the list.
-     */
-    public static void captureSeries()
+    public static void captureSeries() // Capture new series
     {
         System.out.println("CAPTURE NEW SERIES");
         System.out.println("*************************");
 
         System.out.print("Enter the series ID: ");
-        String id = read.nextLine();
+        String id = read.nextLine(); // Input series ID
 
         System.out.print("Enter the series name: ");
-        String name = read.nextLine();
+        String name = read.nextLine(); // Input series name
 
         System.out.print("Enter the series lenght (minutes): ");
-        String size = read.nextLine();
+        String size = read.nextLine(); // Input length
 
         String age;
         while(true)
         {
             System.out.print("Enter the series age restriction (between 2 and 18): ");
-            age = read.nextLine();
+            age = read.nextLine(); // Input age
             try
             {
-                int ageNum = Integer.parseInt(age);
+                int ageNum = Integer.parseInt(age); // Validate number
                 if(ageNum >= 2 && ageNum <= 18)
                 {
                     break;
@@ -151,14 +132,14 @@ class SeriesApp
         }
 
         System.out.print("Enter the number of episodes: ");
-        String episodes = read.nextLine();
+        String episodes = read.nextLine(); // Input episodes
 
-        SeriesModel newSeries = new SeriesModel(id, name, size, age, episodes);
-        seriesList.add(newSeries);
+        SeriesModel newSeries = new SeriesModel(id, name, size, age, episodes); // Create series
+        seriesList.add(newSeries); // Add to list
 
         System.out.println("Series has been captured successfully!!!");
         System.out.println("Enter (1) to launch menu or any other key to exit: ");
-        String choice = read.nextLine();
+        String choice = read.nextLine(); 
         if(!choice.equals("1"))
         {
             System.out.println("Exiting...");
@@ -166,13 +147,10 @@ class SeriesApp
         }
     }
 
-    /**
-     * Searches for a series by ID and displays its details.
-     */
-    public static void searchSeries()
+    public static void searchSeries() // Search series
     {
         System.out.print("Enter the series ID to search: ");
-        String id = read.nextLine();
+        String id = read.nextLine(); // Input ID
 
         boolean found = false;
         for(SeriesModel s : seriesList)
@@ -180,7 +158,7 @@ class SeriesApp
             if(s.mediaId.equals(id))
             {
                 System.out.println("------------------------------");
-                s.printDetails();
+                s.printDetails(); // Print series
                 found = true;
                 break;
             }
@@ -194,7 +172,7 @@ class SeriesApp
         }
 
         System.out.println("Enter (1) to launch menu or any other key to exit: ");
-        String choice = read.nextLine();
+        String choice = read.nextLine(); 
         if(!choice.equals("1"))
         {
             System.out.println("Exiting...");
@@ -202,8 +180,7 @@ class SeriesApp
         }
     }
 
-    //Update Series by ID
-    public static void updateSeries()
+    public static void updateSeries() // Update series (help from ChatGPT, 2025)
     {
         System.out.print("Enter the series ID to update: ");
         String id = read.nextLine();
@@ -261,10 +238,7 @@ class SeriesApp
         }
     }
 
-    /**
-     * Deletes a series from the list by ID.
-     */
-    public static void deleteSeries()
+    public static void deleteSeries() // Delete series
     {
         System.out.print("Enter the series ID you wish to delete: ");
         String id = read.nextLine();
@@ -285,7 +259,7 @@ class SeriesApp
             String confirm = read.nextLine();
             if(confirm.equalsIgnoreCase("y"))
             {
-                seriesList.remove(found);
+                seriesList.remove(found); // Remove series
                 System.out.println("--------------------------------------");
                 System.out.println("Series with Series id: " + id + " was deleted!");
                 System.out.println("--------------------------------------");
@@ -305,10 +279,7 @@ class SeriesApp
         }
     }
 
-    /**
-     * Prints a full report of all recorded series.
-     */
-    public static void printReport()
+    public static void printReport() // Print all series
     {
         if(seriesList.isEmpty())
         {
@@ -321,7 +292,7 @@ class SeriesApp
             {
                 System.out.println("Series " + count);
                 System.out.println("-----------------------------");
-                s.printDetails();
+                s.printDetails(); // Print series details
                 System.out.println("---------------------------------");
                 count++;
             }
