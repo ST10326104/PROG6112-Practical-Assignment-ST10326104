@@ -1,4 +1,5 @@
 package RockPaperScissors;
+//References: Farrall, J., 2020, *Java Programming*, 9th ed.
 
 import java.util.Scanner;
 import java.util.Random;
@@ -38,3 +39,4 @@ public class RockPaperScissors {
         }
     }
 }
+
