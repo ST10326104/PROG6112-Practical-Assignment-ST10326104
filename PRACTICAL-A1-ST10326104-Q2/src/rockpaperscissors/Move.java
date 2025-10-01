@@ -1,4 +1,5 @@
 package RockPaperScissors;
+//References: Farrall, J., 2020, *Java Programming*, 9th ed.
 
 public class Move {
     protected String name;
@@ -23,3 +24,4 @@ public class Move {
         }
     }
 }
+
